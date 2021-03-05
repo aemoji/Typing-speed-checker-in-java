@@ -1,0 +1,150 @@
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.io.*;
+public class CharCount
+{
+	public static void main(String[] args) throws Exception
+	{
+		Scanner sc=new Scanner(System.in);
+         //Generating random number for chosing paragraph from one or two;
+         Random random=new Random();
+         int val=random.nextInt(3)+1;
+        
+        //creating Arraylist of String to store paragraph;
+	     ArrayList<String> paragraph=new ArrayList<>();
+
+		 if(val==1)
+		 {
+		 	String[] para={"We"," ","are"," ","given"," ","a"," ","road"," ","map"," ","on"," ","which"," ","the"," ",
+		 	"distance"," ","between"," ","each"," ","pair"," ","of"," ","adjacent"," ","interesections"," ","is"," ",
+		 	"marked,"," ","and"," ","we"," ","wish"," ","to"," ","determine"," ","the"," ","shortest"," ","route"," ",
+		 	"from"," ","one"," ","interesection"," ","to"," ","another."," ","The"," ","number"," ","of"," ","possible",
+		 	" ","routes"," ","can"," ","be"," ","huge,"," ","even"," ","if"," ","we"," ","disallow"," ","routes"," ","that",
+		 	" ","cross"," ","over"," ","themselve."," ","How"," ","we"," ","choose"," ","which"," ","of"," ","all"," ","possible",
+		 	" ","routes"," ","is"," ","the"," ","shortest?"};
+            
+            //adding words in arraylist of paragraph one 
+            for(int i=0;i<para.length;i++)
+            {
+         		paragraph.add(para[i]);
+         	}
+         }
+         else if(val==2)
+         {
+         	String[] para={"The"," ","third"," ","property"," ","is"," ","perhaps"," ","the"," ","most"," ","important"," ",
+         	"one,"," ","since"," ","we"," ","are"," ","using"," ","the"," ","loop"," ","invariant"," ","to"," ","show,"," ",
+         	"correctness."," ","Typically,"," ","we"," ","use"," ","the"," ","loop"," ","invariant"," ","along"," ","with",
+         	" ","the"," ","condtion"," ","that"," ","caused"," ","the"," ","loop"," ","to"," ","terminate."," ","The"," ",
+         	"termination"," ","property"," ","differs,"," ","from"," ","how"," ","we"," ","usually"," ","use"," ",
+         	"mathematical"," ","induction"};
+
+         	//adding words in arraylist of paragraph two 
+
+         	for(int i=0;i<para.length;i++)
+         	{
+         		paragraph.add(para[i]);
+         	}
+         }
+         else
+         {
+            String[] para={"We"," ","have"," ","designed"," ","this"," ","book"," ","to"," ","be"," ","both"," ",
+         	"versatile"," ","and"," ","complete."," ","You"," ","should"," ","find"," ","it"," ","useful"," ","for"," ","a"," ",
+         	"variety"," ","of"," ","course"," ","from"," ","an"," ","undergraduate"," ","course"," ","in"," ","datastructure",
+         	" ","up"," ","through"," ","a"," ","graduate"," ","course"," ","in"," ","Algorithms."};
+
+         	//adding words in arraylist of paragraph three 
+
+         	for(int i=0;i<para.length;i++)
+         	{
+         		paragraph.add(para[i]);
+         	}
+         }
+          
+            //creating new Array of strings and adding word of Arraylist paragraph to string array a
+            String[] a=new String[paragraph.size()];
+            int idx=0;
+            for(String word:paragraph)
+            {
+            	a[idx]=word;
+            	idx++;
+            }	    
+	
+            //printing the paragraph to output screen
+           
+	       for(int i=0;i<a.length;i++)
+	       {
+	       	System.out.print(a[i]);
+	       }
+	       System.out.println();
+	       System.out.println();
+           
+           //now timer is start 
+
+	       long stime=System.currentTimeMillis();
+           
+           //input from user
+
+		   String input=sc.nextLine();
+            
+            //timer is stop
+
+		   long endtime=System.currentTimeMillis();
+
+            //creating string array to count totoal charaters and words  in paragraph
+
+		   String[] str=input.split(" ");
+           int cCount=0;
+		   for(int i=0;i<str.length;i++)
+		   {
+             cCount+=str[i].length();
+		   }
+
+		   //checking error %
+		     char[] error=input.toCharArray();
+		     double err=0;
+		     String paratoCharArray="";
+		     for (int i=0;i<a.length ;i++ ) {
+		     	for (int j=0;j<a[i].length() ;j++ ) {
+		     		paratoCharArray+=a[i].charAt(j);
+		     	}
+		     }
+		     char[] paragraphArray=paratoCharArray.toCharArray();
+
+		     for(int i=0;i<error.length;i++){
+		     	if(error[i]!=paragraphArray[i]) err++;
+		     }
+		     int len=error.length;
+        
+		     double precision=100-(err*100.0)/len;
+		     
+
+		   
+           //total time taken to write paragraph in seconds
+
+           long totaltime=TimeUnit.MILLISECONDS.toSeconds(endtime-stime);
+           
+           //calculating words per minute and characters per minute
+
+		   long wpm=(long)(((double)str.length/(double)totaltime)*60.0);
+		   long cpm=(long)(((double)cCount/(double)totaltime)*60.0);
+
+           
+
+           //printing result
+          System.out.println();
+		  System.out.println("|| Characters per minute = "+cpm+"||Total Characters = "+cCount+"||");
+		  System.out.println("**********************************************************");
+		  System.out.println("|| Words per minute = "+wpm+"||Total Words "+str.length+"||");
+		  System.out.println("**********************************************************");
+		  System.out.println("|| Total Time = "+totaltime+" Seconds||");
+		  String per="%||";
+		  System.out.println("**********************************************************");
+		  System.out.format("|| Precision =  %.2f%s",precision,per);
+		  System.out.println();
+		  System.out.println("**********************************************************");
+
+		
+	}
+}
+
+   
