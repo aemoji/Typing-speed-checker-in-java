@@ -6,4 +6,4 @@
 4--> when you press"enter" key program is terminated and the result is displayed on screen
 
 // 
-file name is "CharCout"
+file name is "CharCount"
